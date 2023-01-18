@@ -3,19 +3,19 @@ LABEL maintainer="Pooja"
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirement.txt /tmp/requirement.txt
+COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
 ARG DEV=false
-# we are overriding this with ARG in dcoker compose file
+# we are overriding this with ARG in docker compose file
 RUN python -m venv /py && \
     # the above creates a virtual env for the project
     /py/bin/pip install --upgrade pip && \
     # the above shows full path to the virtual env and upgrade the pip for it
-    /py/bin/pip install -r /tmp/requirement.txt && \
+    /py/bin/pip install -r /tmp/requirements.txt && \
     # isntall list of requirements in docker image
     if [ $DEV="true" ]; \
     then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
