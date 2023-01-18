@@ -1,0 +1,21 @@
+version: "3.9"
+# version of docker compose syntax
+
+services:
+  app:
+    # name of our service ^
+    build:
+      context: .
+      # the above two lines say that we wanna build a docker file inside our current directory
+      args:
+        - Dev=true
+      # If we are running using the docker compose file, which will be the case for development, then build argument called dev and set the value to true
+    ports:
+      - "8000:8000"
+    # this maps port 8000 on our local machine to port 8000 in a docker container
+    volumes:
+      - ./app:/app
+    # volumes are a way of mapping diectories from our system to docker container. so that the updates from our local directory are reflected in our container so we can skip rebuilding the container
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    # command that is used to run the service. we can override this by running the 'docker compose run'. if we dont specify a command to run, then it would run the above command
