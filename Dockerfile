@@ -15,6 +15,11 @@ RUN python -m venv /py && \
     # the above creates a virtual env for the project
     /py/bin/pip install --upgrade pip && \
     # the above shows full path to the virtual env and upgrade the pip for it
+    apk add --update-- --no-cache postgresql-client && \
+    # to install posgresql-client
+    apk add --update --no-cache --virtual .tmp-build-deps \
+    # groups the packages we installed into deps and it can be used later to delete the packages
+    build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     # isntall list of requirements in docker image
     if [ $DEV="true" ]; \
@@ -22,6 +27,7 @@ RUN python -m venv /py && \
     fi && \
     rm -rf /tmp && \
     # removed the tmp dir to reduce extra dependencies, so that docker image is light weight
+    apk del .tmp-build-deps && \
     adduser \
     --disabled-password \
     --no-create-home \

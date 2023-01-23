@@ -27,3 +27,44 @@ The above command is to create a Django app using Django on the docker
 
 docker-compose up
 the above command is used to start our services
+
+Django has a django test framework
+it is built on top of unit test library
+It adds features to the test library.
+Such as:
+** Test client: It is a dummy web browser that is used to make requests to the project
+** Simulate Auth: It is used to override the authentication for unit tests
+** Temp database: creates and clears temp database for test cases
+On top of Django the Django rest framework also adds some features to test REST APIs
+** API test client: Its a test client like Django but specifically for the APIs
+
+
+Where are tests in django project?
+django already creates a tests.py in the project
+OR, we can create a tests/ subdirectory to split tests into multiple diff modules
+We can only use one of them but not both of them
+If we are using tests/ sub dir
+** the modules in the dir must start with "test_"
+** the dir shld contain __init.py__
+
+
+Test Database:
+**Django creates a seperate db for tests automatically and clears it after running tests
+**it happens for every test and it is possible to override it
+
+Test Classes:
+** Simple test
+	This dsnt have any db integartion
+	Ueful when no db is required for the test
+	Saves time executing tests
+** TestCase:
+	this is used when we need db integration
+	needed when we need to read/write to db
+** Writing tests:
+	Import either if the above cases
+	Import actual code that u wanna test
+	define test class
+	define test method - each testt is a test method
+	prefix them by name test to be picked up by test runner
+	
+	
