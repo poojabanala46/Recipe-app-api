@@ -1,0 +1,29 @@
+write a Dockerfile
+
+docker build .  /// to run a Dockerfile
+
+write requirement.txt
+
+create app folder
+
+write a docker-compose
+
+docker-compose build /// this command does the same as "docker build ." but it does it via the docker file
+
+what is linting??
+linting is running a tool that checks the code formatting, errors, typos
+Install flake8 package
+Run it through Docker Compose
+ 'docker-compose run --rm app sh -c "flake8"'
+
+For the testing
+We are gonna use the Django test suite
+setup tests for the Django app
+ 'docker-compose run --rm app sh -c "python manage.py test"'
+
+
+'docker-compose run --rm app sh -c "django-admin startproject app ."'
+The above command is to create a Django app using Django on the docker
+
+docker-compose up
+the above command is used to start our services
