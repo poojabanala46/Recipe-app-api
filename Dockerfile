@@ -18,8 +18,8 @@ RUN python -m venv /py && \
     apk add --update-- --no-cache postgresql-client && \
     # to install posgresql-client
     apk add --update --no-cache --virtual .tmp-build-deps \
-    # groups the packages we installed into deps and it can be used later to delete the packages
     build-base postgresql-dev musl-dev && \
+    # groups the packages we installed into deps and it can be used later to delete the packages
     /py/bin/pip install -r /tmp/requirements.txt && \
     # isntall list of requirements in docker image
     if [ $DEV="true" ]; \
